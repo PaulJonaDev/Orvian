@@ -2,7 +2,7 @@
 
 ## Descripción
 
-FocusFlow es una aplicación web de gestión de tareas enfocada en la productividad.
+ORVIAN es una aplicación web de gestión de tareas enfocada en la productividad.
 
 Su principal característica es el modo **Siguiente Acción**, que evita la saturación mostrando únicamente la tarea más importante para el usuario.
 
@@ -58,3 +58,5 @@ MySQL
 ## Objetivo
 
 Reducir la sobrecarga mental del usuario mostrando una única tarea prioritaria para mantener el enfoque y mejorar la productividad.
+
+Enlace figma: https://www.figma.com/design/RtahFwtckgGsEp0e8aFyIj/Sin-t%C3%ADtulo?node-id=0-1&p=f&t=pBCF0NVKH3jiYUbL-0

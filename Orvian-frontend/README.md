@@ -1,62 +1,32 @@
-# Orvian
 
-## Descripción
+# ORVIAN - Planificador de Tareas
 
-ORVIAN es una aplicación web de gestión de tareas enfocada en la productividad.
-
-Su principal característica es el modo **Siguiente Acción**, que evita la saturación mostrando únicamente la tarea más importante para el usuario.
-
-El proyecto está desarrollado bajo una arquitectura Frontend + Backend desacoplada mediante una API REST.
+### Descripción
+ORVIAN es una aplicación web para la gestión de tareas enfocada en mejorar la productividad y evitar la sobrecarga mental mediante una interfaz limpia y estructurada. Desarrollada en el marco del Bootcamp Full Stack Java.
 
 ---
 
-## Tecnologías
+## Entregables del Sprint 1
 
-### Frontend
-
-- HTML5
-- CSS3
-- Bootstrap 5
-- JavaScript
-- Fetch API
-
-### Backend
-
-- Java 17
-- Spring Boot
-- Spring Data JPA
-- Maven
-- MySQL
+- **Trello:** [Tablero del Proyecto en Trello](https://trello.com/b/Z39j2gt0/orvian)
+- **Figma:** [Wireframe de Baja Fidelidad en Figma](https://www.figma.com/design/RtahFwtckgGsEp0e8aFyIj/Sin-t%C3%ADtulo?node-id=0-1&p=f&t=pBCF0NVKH3jiYUbL-0)
+- **Demo (GitHub Pages):** [Ver Aplicación Desplegada](https://PaulJonaDev.github.io/Orvian/)
 
 ---
 
-## Funcionalidades
+## Tecnologías Utilizadas
 
-- CRUD de tareas
-- Gestión de prioridades
-- Gestión de estados
-- Visualización de la siguiente acción
-- Consumo de API REST
-- Persistencia de datos
+- **HTML5:** Estructuración semántica.
+- **CSS3 / Variables Custom:** Estilos y paleta de colores propia (`:root`).
+- **Bootstrap 5 (v5.3.3):** Layout responsivo y componentes de interfaz.
+- **JavaScript (ES6):** Manipulación del DOM y validación de formularios.
 
 ---
 
-## Arquitectura
+## Pasos para la Publicación en GitHub Pages
 
-Frontend (VS Code)
-
-↓
-
-API REST (Spring Boot)
-
-↓
-
-MySQL
-
----
-
-## Objetivo
-
-Reducir la sobrecarga mental del usuario mostrando una única tarea prioritaria para mantener el enfoque y mejorar la productividad.
-
-Enlace figma: https://www.figma.com/design/RtahFwtckgGsEp0e8aFyIj/Sin-t%C3%ADtulo?node-id=0-1&p=f&t=pBCF0NVKH3jiYUbL-0
+1. Ingresar al repositorio en GitHub.
+2. Ir a **Settings** > **Pages**.
+3. En **Source**, seleccionar `Deploy from a branch`.
+4. Seleccionar la rama `main` y la carpeta `/root`.
+5. Guardar los cambios y copiar el enlace generado.

@@ -1,0 +1,87 @@
+/* IDENTIDAD DE MARCA Y PALETA DE COLORES - ORVIAN */
+
+
+:root {
+  /* Colores Principales de Marca */
+  --orvian-primary: #1e293b;        /* Azul Oscuro Profundo (Elegancia y Enfoque) */
+  --orvian-primary-hover: #0f172a;  /* Azul Nochero para Hover */
+  --orvian-accent: #3b82f6;         /* Azul Vibrante para botones e interacción */
+  --orvian-bg: #f8fafc;             /* Fondo general de la aplicación */
+  --orvian-surface: #ffffff;        /* Fondo de tarjetas y contenedor */
+  
+  /* Colores Neutrales y Texto */
+  --orvian-text-main: #0f172a;      /* Texto principal */
+  --orvian-text-muted: #64748b;     /* Texto secundario y descripciones */
+  --orvian-border: #e2e8f0;         /* Bordes suaves */
+
+  /* Colores de Estado (Badges de Tareas) */
+  --status-pending-bg: #fee2e2;     /* Pendiente - Fondo Rojo Suave */
+  --status-pending-text: #991b1b;   /* Pendiente - Texto */
+  
+  --status-process-bg: #fef3c7;     /* En Proceso - Fondo Amarillo Suave */
+  --status-process-text: #92400e;   /* En Proceso - Texto */
+  
+  --status-completed-bg: #dcfce7;   /* Completada - Fondo Verde Suave */
+  --status-completed-text: #166534; /* Completada - Texto */
+
+  /* Sombras y Bordes */
+  --orvian-radius: 12px;
+  --orvian-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  --orvian-shadow-hover: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* Base global */
+body {
+  background-color: var(--orvian-bg) !important;
+  color: var(--orvian-text-main);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Header personalizado */
+.orvian-header {
+  background-color: var(--orvian-primary);
+  color: #ffffff;
+}
+
+/* Botón principal adaptado a la marca */
+.btn-orvian {
+  background-color: var(--orvian-accent);
+  color: #ffffff;
+  border: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-orvian:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+/* Estilo para las Tarjetas de Tarea */
+.task-card {
+  background-color: var(--orvian-surface);
+  border: 1px solid var(--orvian-border);
+  border-radius: var(--orvian-radius);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--orvian-shadow-hover) !important;
+}
+
+/* Badges de Estado con la Paleta de Marca */
+.badge-pending {
+  background-color: var(--status-pending-bg) !important;
+  color: var(--status-pending-text) !important;
+}
+
+.badge-process {
+  background-color: var(--status-process-bg) !important;
+  color: var(--status-process-text) !important;
+}
+
+.badge-completed {
+  background-color: var(--status-completed-bg) !important;
+  color: var(--status-completed-text) !important;
+}

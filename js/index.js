@@ -1,35 +1,67 @@
+
 const taskManager = new TaskManager();
 
-console.log(taskManager.tasks);
+const newTaskForm = document.querySelector('#newTaskForm');
+
+if (newTaskForm) {
+  newTaskForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const nameInput = document.querySelector('#newTaskNameInput');
+    const descriptionInput = document.querySelector('#newTaskDescriptionInput');
+    const dueDateInput = document.querySelector('#newTaskDueDateInput');
+    const statusInput = document.querySelector('#newTaskStatusInput');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    const description = descriptionInput ? descriptionInput.value.trim() : '';
+    const dueDate = dueDateInput ? dueDateInput.value.trim() : '';
+    const status = statusInput ? statusInput.value : 'PORHACER';
+
+    if (!name || !description || !dueDate) {
+      return;
+    }
+
+    taskManager.addTask(name, description, dueDate, status);
+    newTaskForm.reset();
+
+    console.log(taskManager.tasks);
+  });
+}
 
 const taskCards = document.querySelectorAll('.task-card');
 
-
-///Cambio de estado de las tareas al hacer click en el botón de marcar como completada o pendiente
 taskCards.forEach((taskCard) => {
-    const toggleButton = taskCard.querySelector('.task-toggle');
-    const statusBadge = taskCard.querySelector('.badge');
-    const taskTitle = taskCard.querySelector('h3');
+  const toggleButton = taskCard.querySelector('.task-toggle');
+  const statusBadge = taskCard.querySelector('.badge');
+  const taskTitle = taskCard.querySelector('h3');
 
+  if (toggleButton) {
     toggleButton.addEventListener('click', () => {
-        const isCompleted = taskCard.classList.toggle('task-completed');
+      const isCompleted = taskCard.classList.toggle('task-completed');
 
-        if (isCompleted) {
-            statusBadge.textContent = 'Completada';
-            statusBadge.classList.remove('badge-pending', 'badge-process');
-            statusBadge.classList.add('badge-completed');
-
-            taskTitle.style.textDecoration = 'line-through';
-            toggleButton.textContent = '↩';
-            toggleButton.title = 'Marcar tarea como pendiente';
-        } else {
-            statusBadge.textContent = 'Pendiente';
-            statusBadge.classList.remove('badge-completed', 'badge-process');
-            statusBadge.classList.add('badge-pending');
-
-            taskTitle.style.textDecoration = 'none';
-            toggleButton.textContent = '✓';
-            toggleButton.title = 'Marcar tarea como completada';
+      if (isCompleted) {
+        if (statusBadge) {
+          statusBadge.textContent = 'Completada';
+          statusBadge.classList.remove('badge-pending', 'badge-process');
+          statusBadge.classList.add('badge-completed');
         }
+        if (taskTitle) {
+          taskTitle.style.textDecoration = 'line-through';
+        }
+        toggleButton.textContent = '↩';
+        toggleButton.title = 'Marcar tarea como pendiente';
+      } else {
+        if (statusBadge) {
+          statusBadge.textContent = 'Pendiente';
+          statusBadge.classList.remove('badge-completed', 'badge-process');
+          statusBadge.classList.add('badge-pending');
+        }
+        if (taskTitle) {
+          taskTitle.style.textDecoration = 'none';
+        }
+        toggleButton.textContent = '✓';
+        toggleButton.title = 'Marcar tarea como completada';
+      }
     });
+  }
 });

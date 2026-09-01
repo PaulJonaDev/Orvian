@@ -22,22 +22,29 @@ if (newTaskForm) {
     }
 
     taskManager.addTask(name, description, dueDate, status);
+    taskManager.save();
+    taskManager.render();
     newTaskForm.reset();
-
-    console.log(taskManager.tasks);
   });
 }
 
-const taskCards = document.querySelectorAll('.task-card');
+document.addEventListener('click', (event) => {
+  if (event.target.classList.contains('delete-button')) {
+    const parentTask = event.target.closest('[data-task-id]');
+    if (parentTask) {
+      const taskId = Number(parentTask.dataset.taskId);
+      taskManager.deleteTask(taskId);
+      taskManager.save();
+      taskManager.render();
+    }
+  }
 
-taskCards.forEach((taskCard) => {
-  const toggleButton = taskCard.querySelector('.task-toggle');
-  const statusBadge = taskCard.querySelector('.badge');
-  const taskTitle = taskCard.querySelector('h3');
-
-  if (toggleButton) {
-    toggleButton.addEventListener('click', () => {
+  if (event.target.classList.contains('task-toggle')) {
+    const taskCard = event.target.closest('.task-card');
+    if (taskCard) {
       const isCompleted = taskCard.classList.toggle('task-completed');
+      const statusBadge = taskCard.querySelector('.badge');
+      const taskTitle = taskCard.querySelector('h3');
 
       if (isCompleted) {
         if (statusBadge) {
@@ -46,10 +53,10 @@ taskCards.forEach((taskCard) => {
           statusBadge.classList.add('badge-completed');
         }
         if (taskTitle) {
-          taskTitle.style.textDecoration = 'line-through';
+          taskTitle.classList.add('text-decoration-line-through');
         }
-        toggleButton.textContent = '↩';
-        toggleButton.title = 'Marcar tarea como pendiente';
+        event.target.textContent = '↩';
+        event.target.title = 'Marcar tarea como pendiente';
       } else {
         if (statusBadge) {
           statusBadge.textContent = 'Pendiente';
@@ -57,11 +64,13 @@ taskCards.forEach((taskCard) => {
           statusBadge.classList.add('badge-pending');
         }
         if (taskTitle) {
-          taskTitle.style.textDecoration = 'none';
+          taskTitle.classList.remove('text-decoration-line-through');
         }
-        toggleButton.textContent = '✓';
-        toggleButton.title = 'Marcar tarea como completada';
+        event.target.textContent = '✓';
+        event.target.title = 'Marcar tarea como completada';
       }
-    });
+    }
   }
 });
+
+taskManager.render();

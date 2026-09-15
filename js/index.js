@@ -28,7 +28,22 @@ if (newTaskForm) {
   });
 }
 
-document.addEventListener('click', (event) => {
+const tasksList = document.querySelector('#tasksList') || document;
+
+tasksList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('done-button')) {
+    const parentTask = event.target.closest('[data-task-id]');
+    if (parentTask) {
+      const taskId = Number(parentTask.dataset.taskId);
+      const task = taskManager.getTaskById(taskId);
+      if (task) {
+        task.status = 'DONE';
+        taskManager.save();
+        taskManager.render();
+      }
+    }
+  }
+
   if (event.target.classList.contains('delete-button')) {
     const parentTask = event.target.closest('[data-task-id]');
     if (parentTask) {
@@ -36,39 +51,6 @@ document.addEventListener('click', (event) => {
       taskManager.deleteTask(taskId);
       taskManager.save();
       taskManager.render();
-    }
-  }
-
-  if (event.target.classList.contains('task-toggle')) {
-    const taskCard = event.target.closest('.task-card');
-    if (taskCard) {
-      const isCompleted = taskCard.classList.toggle('task-completed');
-      const statusBadge = taskCard.querySelector('.badge');
-      const taskTitle = taskCard.querySelector('h3');
-
-      if (isCompleted) {
-        if (statusBadge) {
-          statusBadge.textContent = 'Completada';
-          statusBadge.classList.remove('badge-pending', 'badge-process');
-          statusBadge.classList.add('badge-completed');
-        }
-        if (taskTitle) {
-          taskTitle.classList.add('text-decoration-line-through');
-        }
-        event.target.textContent = '↩';
-        event.target.title = 'Marcar tarea como pendiente';
-      } else {
-        if (statusBadge) {
-          statusBadge.textContent = 'Pendiente';
-          statusBadge.classList.remove('badge-completed', 'badge-process');
-          statusBadge.classList.add('badge-pending');
-        }
-        if (taskTitle) {
-          taskTitle.classList.remove('text-decoration-line-through');
-        }
-        event.target.textContent = '✓';
-        event.target.title = 'Marcar tarea como completada';
-      }
     }
   }
 });

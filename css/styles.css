@@ -85,3 +85,81 @@ body {
   background-color: var(--status-completed-bg) !important;
   color: var(--status-completed-text) !important;
 }
+
+/* RESPONSIVE DESIGN & MEDIA QUERIES (ORVIAN)*/
+
+/* 1. Móviles pequeños (hasta 575px) */
+@media (max-width: 575px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #newTaskForm {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  #tasksList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .task-card {
+    width: 100%;
+  }
+
+  .acciones-tarea {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .acciones-tarea .btn {
+    width: 100%;
+  }
+}
+
+/* 2. Tablets y pantallas medianas (576px a 768px) */
+@media (min-width: 576px) and (max-width: 768px) {
+  #tasksList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .acciones-tarea {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+}
+
+/* 3. Laptops y Escritorios (769px a 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  #tasksList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* 4. Pantallas grandes y Monitores HD (más de 1024px) */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  #tasksList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}

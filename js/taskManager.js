@@ -1,25 +1,22 @@
 class TaskManager {
-    constructor(currentId = 0) {
-        this.tasks = [];
-        this.currentId = currentId;
-    }
+  constructor(currentId = 0) {
+    this.tasks = [];
+    this.currentId = currentId;
+  }
 
-addTask(name, description, dueDate, status = 'PORHACER') {
+  addTask(name, description, dueDate, status = 'PORHACER') {
     this.currentId++;
     const task = {
       id: this.currentId,
-      name: name,
-      description: description,
-      dueDate: dueDate,
-      status: status
+      name,
+      description,
+      dueDate,
+      status
+    };
+    this.tasks.push(task);
+  }
 
-
-};
-this.tasks.push(task);
-
-}
-
-deleteTask(taskId) {
+  deleteTask(taskId) {
     const newTasks = [];
     for (let task of this.tasks) {
       if (task.id !== taskId) {
@@ -29,11 +26,33 @@ deleteTask(taskId) {
     this.tasks = newTasks;
   }
 
-  save() {
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    localStorage.setItem('currentId', String(this.currentId));
+  getTaskById(taskId) {
+    let foundTask;
+    for (let task of this.tasks) {
+      if (task.id === taskId) {
+        foundTask = task;
+      }
+    }
+    return foundTask;
   }
 
+  save() {
+    const tasksJson = JSON.stringify(this.tasks);
+    localStorage.setItem('tasks', tasksJson);
+    const currentId = String(this.currentId);
+    localStorage.setItem('currentId', currentId);
+  }
+
+  load() {
+    const tasksJson = localStorage.getItem('tasks');
+    if (tasksJson) {
+      this.tasks = JSON.parse(tasksJson);
+    }
+    const currentId = localStorage.getItem('currentId');
+    if (currentId) {
+      this.currentId = Number(currentId);
+    }
+  }
 
   createTaskHtml(id, name, description, dueDate, status) {
     const isDone = status === 'DONE';
@@ -53,25 +72,23 @@ deleteTask(taskId) {
       </div>
     `;
   }
-  
+
   render() {
     const tasksList = document.querySelector('#tasksList');
     if (!tasksList) return;
-    
-    tasksList.innerHTML = '';
-    this.tasks.forEach(task => {
-      tasksList.innerHTML += `
-        <div class="task-card" data-task-id="${task.id}">
-          <h3>${task.name}</h3>
-          <p>${task.description}</p>
-          <small>${task.dueDate}</small>
-          <span class="badge badge-pending">${task.status}</span>
-          <div class="acciones-tarea">
-            <button class="task-toggle btn btn-success">✓</button>
-            <button class="delete-button btn btn-danger">Eliminar</button>
-          </div>
-        </div>
-      `;
-    });
+
+    const tasksHtmlList = [];
+    for (let task of this.tasks) {
+      const taskHtml = this.createTaskHtml(
+        task.id,
+        task.name,
+        task.description,
+        task.dueDate,
+        task.status
+      );
+      tasksHtmlList.push(taskHtml);
+    }
+
+    tasksList.innerHTML = tasksHtmlList.join('\n');
   }
 }

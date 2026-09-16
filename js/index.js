@@ -1,5 +1,7 @@
-
 const taskManager = new TaskManager();
+
+taskManager.load();
+taskManager.render();
 
 const newTaskForm = document.querySelector('#newTaskForm');
 
@@ -54,5 +56,3 @@ tasksList.addEventListener('click', (event) => {
     }
   }
 });
-
-taskManager.render();
